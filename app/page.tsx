@@ -19,8 +19,8 @@ export default function Home() {
       
       <Hero onOpenBooking={() => setIsBookingOpen(true)} />
       
-      {/* About Section */}
-      <section id="about" className="py-24 bg-white">
+      {/* Service & Organization Section */}
+      <section id="service" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center gap-20">
             <div className="flex-1">
@@ -31,25 +31,25 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <span className="text-stone-400 uppercase tracking-[0.4em] text-[10px] font-bold mb-4 block">
-                  Наша історія
+                  Сервіс та Організація
                 </span>
                 <h2 className="text-5xl md:text-6xl font-serif italic text-stone-900 mb-8">
-                  Смак, що надихає <br /> на святкування
+                  Спокій та впевненість <br /> у кожній деталі
                 </h2>
                 <p className="text-stone-600 font-serif italic text-lg leading-relaxed mb-8">
-                  Ресторан &quot;Plate&quot; народився з пристрасті до вишуканої кухні та гостинності. Ми віримо, що кожен банкет — це унікальна історія, яку ми пишемо разом з вами.
+                  Організація заходів у PLATE — це системний і відпрацьований процес, який знімає з вас зайвий стрес. З вами працює персональний менеджер, який допомагає скласти меню, продумати формат та координує всі процеси.
                 </p>
                 <p className="text-stone-500 text-sm leading-relaxed mb-10">
-                  Наші шеф-кухарі поєднують локальні традиції з сучасними кулінарними техніками, створюючи страви, які дивують навіть найвибагливіших гурманів. Від камерних вечерь до масштабних весіль — ми забезпечуємо бездоганний сервіс та атмосферу.
+                  Особлива увага приділяється деталям: від сервірування та подачі страв до роботи персоналу в залі. Команда ресторану супроводжує гостей на всіх етапах, забезпечуючи бездоганний результат та атмосферу, в якій комфортно кожному.
                 </p>
                 <div className="flex gap-12">
                   <div>
-                    <span className="text-4xl font-serif text-stone-900 block mb-2">10+</span>
-                    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Років досвіду</span>
+                    <span className="text-4xl font-serif text-stone-900 block mb-2">100%</span>
+                    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Координація</span>
                   </div>
                   <div>
-                    <span className="text-4xl font-serif text-stone-900 block mb-2">2.5k</span>
-                    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Щасливих подій</span>
+                    <span className="text-4xl font-serif text-stone-900 block mb-2">0</span>
+                    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Зайвого стресу</span>
                   </div>
                 </div>
               </motion.div>
@@ -63,8 +63,8 @@ export default function Home() {
                 className="relative z-10"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop"
-                  alt="Restaurant Interior"
+                  src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop"
+                  alt="Event Organization"
                   width={1000}
                   height={600}
                   className="rounded-3xl shadow-2xl"
@@ -94,8 +94,11 @@ export default function Home() {
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-serif italic mb-12">
-            Плануєте особливу подію? <br /> Давайте створимо її разом.
+            Насолоджуйтеся святом, <br /> не відволікаючись на деталі.
           </h2>
+          <p className="text-white/80 font-serif italic text-lg mb-12 max-w-2xl mx-auto">
+            Ми подбаємо про все: від складання меню до координації в день події. Зосередьтеся на головному — вашому святі.
+          </p>
           <button
             onClick={() => setIsBookingOpen(true)}
             className="px-12 py-6 bg-white text-stone-900 uppercase tracking-[0.2em] text-xs font-bold hover:bg-stone-100 transition-all transform hover:scale-105"

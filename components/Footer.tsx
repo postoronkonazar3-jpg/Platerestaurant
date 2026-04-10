@@ -1,39 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Instagram, Facebook, MapPin, Phone, Mail, FileDown } from 'lucide-react';
-import { domToJpeg } from 'modern-screenshot';
-import jsPDF from 'jspdf';
+import React from 'react';
+import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
-  const [isGenerating, setIsGenerating] = useState(false);
-
-  const handleSaveAsPDF = async () => {
-    setIsGenerating(true);
-    try {
-      const element = document.body;
-      
-      // modern-screenshot handles oklch and other modern CSS better
-      const dataUrl = await domToJpeg(element, {
-        quality: 0.8,
-      });
-      
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'px',
-        format: [element.scrollWidth, element.scrollHeight]
-      });
-      
-      pdf.addImage(dataUrl, 'JPEG', 0, 0, element.scrollWidth, element.scrollHeight);
-      pdf.save('plate-restaurant-screenshot.pdf');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-      alert('Вибачте, сталася помилка при створенні PDF. Спробуйте ще раз або відкрийте сайт у новому вікні.');
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
   return (
     <footer id="contacts" className="bg-stone-900 text-white py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -60,8 +30,8 @@ export default function Footer() {
             <ul className="space-y-4 text-sm font-serif italic text-stone-300">
               <li><a href="#" className="hover:text-white transition-colors">Головна</a></li>
               <li><a href="#menu" className="hover:text-white transition-colors">Меню</a></li>
-              <li><a href="#banquets" className="hover:text-white transition-colors">Банкети</a></li>
-              <li><a href="#about" className="hover:text-white transition-colors">Про нас</a></li>
+              <li><a href="#service" className="hover:text-white transition-colors">Сервіс</a></li>
+              <li><a href="#contacts" className="hover:text-white transition-colors">Контакти</a></li>
             </ul>
           </div>
 
@@ -105,16 +75,8 @@ export default function Footer() {
           <p className="text-stone-500 text-[10px] uppercase tracking-widest">
             © 2026 Plate Restaurant. Всі права захищені.
           </p>
-          <div className="flex flex-wrap justify-center md:justify-end gap-8 text-[10px] uppercase tracking-widest text-stone-500">
+          <div className="flex gap-8 text-[10px] uppercase tracking-widest text-stone-500">
             <a href="#" className="hover:text-white transition-colors">Політика конфіденційності</a>
-            <button 
-              onClick={handleSaveAsPDF}
-              disabled={isGenerating}
-              className="flex items-center gap-2 hover:text-white transition-colors disabled:opacity-50"
-            >
-              <FileDown className="w-3 h-3" />
-              {isGenerating ? 'Завантаження...' : 'Зберегти як PDF'}
-            </button>
             <a href="#" className="hover:text-white transition-colors">Публічна оферта</a>
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
   const navLinks = [
     { name: 'Головна', href: '#' },
     { name: 'Меню', href: '#menu' },
-    { name: 'Про нас', href: '#about' },
+    { name: 'Сервіс', href: '#service' },
     { name: 'Контакти', href: '#contacts' },
   ];
 

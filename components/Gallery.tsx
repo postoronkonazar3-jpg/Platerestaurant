@@ -73,9 +73,12 @@ export default function Gallery() {
         <span className="text-stone-400 uppercase tracking-[0.4em] text-[10px] font-bold mb-4 block">
           Галерея
         </span>
-        <h2 className="text-5xl md:text-7xl font-serif italic text-stone-900">
+        <h2 className="text-5xl md:text-7xl font-serif italic text-stone-900 mb-8">
           Наші миті
         </h2>
+        <p className="text-stone-500 font-serif italic text-lg leading-relaxed max-w-2xl">
+          Атмосфера в PLATE формується завдяки поєднанню простору, світла та музики. Інтер’єр створює відчуття затишку та приватності для кожного гостя.
+        </p>
       </div>
 
       <div 

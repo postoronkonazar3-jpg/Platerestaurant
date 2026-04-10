@@ -38,8 +38,8 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           <h1 className="text-6xl md:text-8xl lg:text-9xl text-white font-serif italic mb-8 leading-tight">
             Plate Restaurant
           </h1>
-          <p className="text-white/90 text-lg md:text-xl font-serif italic max-w-2xl mx-auto mb-12">
-            Вишукані банкети та незабутні події в самому серці міста. Створюємо спогади, що залишаються назавжди.
+          <p className="text-white/90 text-lg md:text-xl font-serif italic max-w-3xl mx-auto mb-12">
+            Ресторан PLATE — це простір, де кожна подія перетворюється на продуманий, естетичний і по-справжньому комфортний досвід. Ми поєднуємо високий рівень сервісу, уважне ставлення до деталей і кухню, яка залишає сильне враження у кожного гостя.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <button
@@ -65,7 +65,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
         transition={{ delay: 1.5, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
       >
-        <a href="#about" className="text-white/60 flex flex-col items-center gap-2 hover:text-white transition-colors">
+        <a href="#service" className="text-white/60 flex flex-col items-center gap-2 hover:text-white transition-colors">
           <span className="text-[10px] uppercase tracking-[0.3em]">Гортати</span>
           <ChevronDown className="w-4 h-4 animate-bounce" />
         </a>
