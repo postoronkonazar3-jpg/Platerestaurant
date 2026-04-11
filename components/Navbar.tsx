@@ -23,30 +23,36 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
 
   const navLinks = [
     { name: 'Головна', href: '#' },
-    { name: 'Меню', href: '#menu' },
+    { name: 'Меню', isMenuTrigger: true },
     { name: 'Сервіс', href: '#service' },
     { name: 'Контакти', href: '#contacts' },
   ];
 
-  const handleNavClick = (link: { name: string; href: string }) => {
-    if (link.name === 'Меню') {
+  const handleMobileNavClick = (href: string, isMenuTrigger?: boolean) => {
+    setIsMobileMenuOpen(false);
+    
+    if (isMenuTrigger) {
       onOpenMenu();
+      return;
+    }
+
+    if (href === '#') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      if (link.href === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const targetId = link.href.replace('#', '');
-        const element = document.getElementById(targetId);
-        if (element) {
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        // Small delay to allow the menu closing animation to start
+        setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
-        }
+        }, 50);
       }
     }
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
         isScrolled ? 'bg-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-8'
       }`}
     >
@@ -62,15 +68,27 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => handleNavClick(link)}
-              className={`text-xs uppercase tracking-[0.2em] font-bold transition-colors duration-500 hover:opacity-60 ${
-                isScrolled ? 'text-stone-900' : 'text-white'
-              }`}
-            >
-              {link.name}
-            </button>
+            link.isMenuTrigger ? (
+              <button
+                key={link.name}
+                onClick={onOpenMenu}
+                className={`text-xs uppercase tracking-[0.2em] font-bold transition-colors duration-500 hover:opacity-60 ${
+                  isScrolled ? 'text-stone-900' : 'text-white'
+                }`}
+              >
+                {link.name}
+              </button>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`text-xs uppercase tracking-[0.2em] font-bold transition-colors duration-500 hover:opacity-60 ${
+                  isScrolled ? 'text-stone-900' : 'text-white'
+                }`}
+              >
+                {link.name}
+              </a>
+            )
           ))}
           <div className="flex items-center gap-4">
             <button
@@ -98,11 +116,11 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 relative z-[110]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <X className={isScrolled ? 'text-stone-900' : 'text-white'} />
+            <X className="text-stone-900" />
           ) : (
             <MenuIcon className={isScrolled ? 'text-stone-900' : 'text-white'} />
           )}
@@ -112,29 +130,26 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
       {/* Mobile Menu */}
       <motion.div
         initial={false}
-        animate={isMobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-        className="md:hidden bg-white overflow-hidden"
+        animate={isMobileMenuOpen ? { height: 'auto', opacity: 1, display: 'block' } : { height: 0, opacity: 0, transitionEnd: { display: 'none' } }}
+        className="md:hidden bg-white overflow-hidden border-b border-stone-100 shadow-2xl pointer-events-auto"
       >
-        <div className="px-6 py-8 flex flex-col space-y-6">
+        <div className="px-6 py-12 flex flex-col space-y-8">
           {navLinks.map((link) => (
             <button
               key={link.name}
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleNavClick(link);
-              }}
-              className="text-stone-900 text-sm uppercase tracking-widest font-bold text-left"
+              onClick={() => handleMobileNavClick(link.href || '', link.isMenuTrigger)}
+              className="text-stone-900 text-base uppercase tracking-[0.2em] font-bold text-left py-2 border-b border-stone-50"
             >
               {link.name}
             </button>
           ))}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4 pt-4">
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 onOpenBooking('table');
               }}
-              className="w-full py-4 border border-stone-900 text-stone-900 text-xs uppercase tracking-widest font-bold"
+              className="w-full py-5 border border-stone-900 text-stone-900 text-xs uppercase tracking-[0.2em] font-bold"
             >
               Забронювати стіл
             </button>
@@ -143,7 +158,7 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
                 setIsMobileMenuOpen(false);
                 onOpenBooking('calculation');
               }}
-              className="w-full py-4 bg-stone-900 text-white text-xs uppercase tracking-widest font-bold"
+              className="w-full py-5 bg-stone-900 text-white text-xs uppercase tracking-[0.2em] font-bold"
             >
               Розрахунок банкету
             </button>
