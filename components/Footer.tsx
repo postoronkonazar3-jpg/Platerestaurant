@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { Instagram, Facebook, MapPin, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -13,14 +14,16 @@ export default function Footer() {
               Plate
             </a>
             <p className="text-stone-400 font-serif italic text-sm leading-relaxed">
-              Місце, де смак зустрічається з елегантністю. Створюємо вишукані події з 2015 року.
+              Місце, де смак зустрічається з елегантністю. Створюємо вишукані події та затишні вечори у самому серці Києва.
             </p>
             <div className="flex gap-6 mt-8">
-              <a href="#" className="text-stone-400 hover:text-white transition-colors">
+              <a 
+                href="https://www.instagram.com/plate_kyiv_?igsh=MWh5dThvdmNpOGd3Mg%3D%3D&utm_source=qr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-stone-400 hover:text-white transition-colors"
+              >
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-stone-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -35,37 +38,61 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-1 md:col-span-1">
             <h4 className="text-xs uppercase tracking-widest font-bold mb-8 text-stone-500">Контакти</h4>
-            <ul className="space-y-6 text-sm">
-              <li className="flex gap-4">
-                <MapPin className="w-5 h-5 text-stone-500 shrink-0" />
-                <span className="text-stone-300 font-serif italic">вул. Вишнева, 12, Київ, Україна</span>
-              </li>
-              <li className="flex gap-4">
-                <Phone className="w-5 h-5 text-stone-500 shrink-0" />
-                <span className="text-stone-300">+38 (044) 123-45-67</span>
-              </li>
-              <li className="flex gap-4">
-                <Mail className="w-5 h-5 text-stone-500 shrink-0" />
-                <span className="text-stone-300">hello@plate-restaurant.ua</span>
-              </li>
-            </ul>
+            <div className="space-y-8">
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-stone-500 mb-3 font-bold">Дмитрівська, 62/20</p>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex flex-col gap-1">
+                    <span className="text-stone-500 text-[10px] uppercase tracking-wider">Банкетний менеджер-адміністратор</span>
+                    <a href="tel:0677648880" className="text-stone-300 hover:text-white transition-colors font-sans">067 764 88 80</a>
+                  </li>
+                  <li className="flex gap-2 items-center text-stone-400 text-xs italic font-serif">
+                    <span>8:00 — 22:00</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-stone-500 mb-3 font-bold">Скляренка, 9</p>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex flex-col gap-1">
+                    <span className="text-stone-500 text-[10px] uppercase tracking-wider">Івент-менеджер</span>
+                    <a href="tel:0679348880" className="text-stone-300 hover:text-white transition-colors font-sans">067 934 88 80</a>
+                  </li>
+                  <li className="flex flex-col gap-1">
+                    <span className="text-stone-500 text-[10px] uppercase tracking-wider">Банкетний менеджер</span>
+                    <a href="tel:0677248880" className="text-stone-300 hover:text-white transition-colors font-sans">067 724 88 80</a>
+                  </li>
+                  <li className="flex flex-col gap-1">
+                    <span className="text-stone-500 text-[10px] uppercase tracking-wider">Адміністратор</span>
+                    <a href="tel:0994235446" className="text-stone-300 hover:text-white transition-colors font-sans">099 423 54 46</a>
+                  </li>
+                  <li className="flex gap-2 items-center text-stone-400 text-xs italic font-serif">
+                    <span>11:00 — 22:00</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold mb-8 text-stone-500">Години роботи</h4>
-            <ul className="space-y-4 text-sm font-serif italic text-stone-300">
-              <li className="flex justify-between">
-                <span>Пн - Пт</span>
-                <span>11:00 - 23:00</span>
+            <h4 className="text-xs uppercase tracking-widest font-bold mb-8 text-stone-500">Локації</h4>
+            <ul className="space-y-6 text-sm">
+              <li className="flex gap-4">
+                <MapPin className="w-5 h-5 text-stone-500 shrink-0" />
+                <div className="flex flex-col gap-1">
+                  <span className="text-stone-300 font-serif italic">вул. Дмитрівська, 62/20</span>
+                  <span className="text-stone-500 text-[10px] uppercase tracking-widest">Київ, Центр</span>
+                </div>
               </li>
-              <li className="flex justify-between">
-                <span>Сб - Нд</span>
-                <span>10:00 - 00:00</span>
-              </li>
-              <li className="pt-4 text-stone-500 text-xs uppercase tracking-widest font-bold not-italic">
-                Банкети: за домовленістю
+              <li className="flex gap-4">
+                <MapPin className="w-5 h-5 text-stone-500 shrink-0" />
+                <div className="flex flex-col gap-1">
+                  <span className="text-stone-300 font-serif italic">вул. Скляренка, 9</span>
+                  <span className="text-stone-500 text-[10px] uppercase tracking-widest">Київ, Оболонь</span>
+                </div>
               </li>
             </ul>
           </div>
@@ -76,8 +103,8 @@ export default function Footer() {
             © 2026 Plate Restaurant. Всі права захищені.
           </p>
           <div className="flex gap-8 text-[10px] uppercase tracking-widest text-stone-500">
-            <a href="#" className="hover:text-white transition-colors">Політика конфіденційності</a>
-            <a href="#" className="hover:text-white transition-colors">Публічна оферта</a>
+            <Link href="/privacy" className="hover:text-white transition-colors">Політика конфіденційності</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Публічна оферта</Link>
           </div>
         </div>
       </div>

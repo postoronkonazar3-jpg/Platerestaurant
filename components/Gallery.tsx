@@ -5,41 +5,32 @@ import Image from 'next/image';
 import { motion, useMotionValue, animate } from 'motion/react';
 
 const galleryImages = [
-  {
-    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop",
-    alt: "Restaurant Atmosphere",
-    title: "Атмосфера",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop",
-    alt: "Exquisite Dishes",
-    title: "Вишукані страви",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop",
-    alt: "Table Setting",
-    title: "Сервірування",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=2070&auto=format&fit=crop",
-    alt: "Bar Area",
-    title: "Барна зона",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?q=80&w=2071&auto=format&fit=crop",
-    alt: "Chef at Work",
-    title: "Майстерність",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop",
-    alt: "Cocktails",
-    title: "Авторські коктейлі",
-  },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869606/photo_5_2026-04-11_04-05-18_jydehg.jpg", alt: "Plate Event 1" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869605/photo_5_2026-04-11_04-05-06_tm0mne.jpg", alt: "Plate Event 2" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_4_2026-04-11_04-05-06_mb69le.jpg", alt: "Plate Event 3" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869605/photo_4_2026-04-11_04-05-18_fmx0ua.jpg", alt: "Plate Event 4" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_3_2026-04-11_04-05-06_lfbutg.jpg", alt: "Plate Event 5" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_3_2026-04-11_04-05-18_jb4f3v.jpg", alt: "Plate Event 6" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_2_2026-04-11_04-05-18_vtzi8i.jpg", alt: "Plate Event 7" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_1_2026-04-11_04-05-18_hqakti.jpg", alt: "Plate Event 8" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_2_2026-04-11_04-05-06_ds5qnr.jpg", alt: "Plate Event 9" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/IMG_6715_n97itn.jpg", alt: "Plate Event 10" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_1_2026-04-11_04-05-06_ozqe9y.jpg", alt: "Plate Event 11" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869603/photo_6_2026-04-11_04-05-18_m5ksc4.jpg", alt: "Plate Event 12" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869604/photo_2026-04-11_01-29-07_zaktlm.jpg", alt: "Plate Event 13" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869603/photo_9_2026-04-11_04-05-18_beaoqz.jpg", alt: "Plate Event 14" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869603/photo_8_2026-04-11_04-05-18_lgcrsg.jpg", alt: "Plate Event 15" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869603/photo_7_2026-04-11_04-05-06_fj4xn7.jpg", alt: "Plate Event 16" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869603/photo_7_2026-04-11_04-05-18_ioxnto.jpg", alt: "Plate Event 17" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869603/photo_6_2026-04-11_04-05-06_e3xyxd.jpg", alt: "Plate Event 18" },
+  { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775860177/photo_2026-04-10_15-00-44_eofk6r.jpg", alt: "Plate Event 19" },
 ];
 
 export default function Gallery() {
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const x = useMotionValue(0);
 
   useEffect(() => {
@@ -57,15 +48,29 @@ export default function Gallery() {
   }, []);
 
   useEffect(() => {
-    const controls = animate(x, [0, dragConstraints.left], {
-      duration: 40,
+    if (!isAutoPlaying || dragConstraints.left === 0) return;
+
+    const controls = animate(x, [x.get(), dragConstraints.left, 0], {
+      duration: 120, // 2 times slower (was 60)
       ease: "linear",
       repeat: Infinity,
-      repeatType: "reverse",
+      repeatType: "loop",
     });
 
     return controls.stop;
-  }, [dragConstraints.left, x]);
+  }, [dragConstraints.left, x, isAutoPlaying]);
+
+  const handleDragStart = () => {
+    setIsAutoPlaying(false);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  };
+
+  const handleDragEnd = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 5000);
+  };
 
   return (
     <section className="py-24 bg-stone-50 overflow-hidden">
@@ -88,10 +93,11 @@ export default function Gallery() {
         <motion.div
           drag="x"
           dragConstraints={dragConstraints}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
           style={{ x }}
           className="flex gap-8 px-6 md:px-24"
         >
-          {/* Single set of images for ping-pong effect */}
           {galleryImages.map((image, index) => (
             <div
               key={index}
@@ -104,27 +110,12 @@ export default function Gallery() {
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
                 draggable={false}
+                priority={index < 8} // Preload first 8 images
+                loading={index >= 8 ? "eager" : undefined} // Force eager loading for the rest
               />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
-              <div className="absolute bottom-8 left-8">
-                <p className="text-white text-xl font-serif italic tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  {image.title}
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-500" />
             </div>
           ))}
-
-          {/* "See More" Button */}
-          <div className="flex-shrink-0 flex items-center justify-center w-[300px] md:w-[400px]">
-            <button className="group flex flex-col items-center gap-6">
-              <div className="w-24 h-24 rounded-full border border-stone-300 flex items-center justify-center group-hover:bg-stone-900 group-hover:border-stone-900 transition-all duration-500">
-                <div className="w-2 h-2 bg-stone-900 group-hover:bg-white rounded-full transition-colors" />
-              </div>
-              <span className="text-xs uppercase tracking-[0.3em] font-bold text-stone-400 group-hover:text-stone-900 transition-colors">
-                Дивитися ще
-              </span>
-            </button>
-          </div>
         </motion.div>
       </div>
     </section>

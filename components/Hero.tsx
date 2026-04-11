@@ -6,18 +6,20 @@ import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 
 interface HeroProps {
-  onOpenBooking: () => void;
+  onOpenBooking: (mode: 'calculation' | 'table') => void;
+  onOpenMenu: () => void;
 }
 
-export default function Hero({ onOpenBooking }: HeroProps) {
+export default function Hero({ onOpenBooking, onOpenMenu }: HeroProps) {
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-black/65 z-10" />
+        
         <Image
-          src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2074&auto=format&fit=crop"
-          alt="Plate Banquet Hall"
+          src="https://res.cloudinary.com/daq51lz0x/image/upload/v1775859911/IMG_6715_1_dabp4s.jpg"
+          alt="Plate Restaurant Interior"
           fill
           className="object-cover scale-105 animate-slow-zoom"
           priority
@@ -26,7 +28,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 text-center px-6 max-w-4xl">
+      <div className="relative z-20 text-center px-6 max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,25 +37,56 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           <span className="text-white/80 uppercase tracking-[0.4em] text-xs font-bold mb-6 block">
             Мистецтво святкування
           </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl text-white font-serif italic mb-8 leading-tight">
-            Plate Restaurant
+          <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif italic mb-8 leading-tight">
+            Plate — місце для ваших подій у Києві
           </h1>
-          <p className="text-white/90 text-lg md:text-xl font-serif italic max-w-3xl mx-auto mb-12">
-            Ресторан PLATE — це простір, де кожна подія перетворюється на продуманий, естетичний і по-справжньому комфортний досвід. Ми поєднуємо високий рівень сервісу, уважне ставлення до деталей і кухню, яка залишає сильне враження у кожного гостя.
+          
+          <div className="grid md:grid-cols-2 gap-8 text-left mb-12">
+            <div className="space-y-4">
+              <p className="text-white/90 text-sm md:text-base font-serif italic leading-relaxed">
+                Ми створили Plate як світлий та зрозумілий простір, де головне — це ваша подія та люди за столом. У нас немає зайвого пафосу, зате є багато світла, сучасний дизайн і кухня, яку полюбляють.
+              </p>
+              <p className="text-white/90 text-sm md:text-base font-serif italic leading-relaxed">
+                Сьогодні Plate — це вже дві локації у Києві, кожна з яких має свій характер, але зберігає наш спільний підхід до якості. Плануєте ви камерне весілля, день народження чи корпоратив — ми просто робимо так, щоб вам було смачно, затишно і спокійно.
+              </p>
+            </div>
+            <div className="space-y-4 border-l border-white/20 pl-8 hidden md:block">
+              <div className="space-y-2">
+                <p className="text-white text-xs uppercase tracking-widest font-bold">Два заклади</p>
+                <p className="text-white/70 text-xs italic">Обирайте локацію, яка зручніша для ваших гостей.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-white text-xs uppercase tracking-widest font-bold">Простір</p>
+                <p className="text-white/70 text-xs italic">Сучасні зали, що легко підлаштовуються под ваш декор.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-white text-xs uppercase tracking-widest font-bold">Кухня</p>
+                <p className="text-white/70 text-xs italic">Зрозуміла європейська класика та авторські акценти.</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-white text-xs uppercase tracking-widest font-bold">Сервіс</p>
+                <p className="text-white/70 text-xs italic">Коли команда поруч саме тоді, коли це потрібно.</p>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-white font-serif italic text-xl mb-12">
+            Plate — подбаємо про ваше свято, як про своє
           </p>
+
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <button
-              onClick={onOpenBooking}
+              onClick={() => onOpenBooking('calculation')}
               className="px-10 py-5 bg-white text-stone-900 uppercase tracking-[0.2em] text-xs font-bold hover:bg-stone-100 transition-all transform hover:-translate-y-1"
             >
-              Забронювати
+              Розрахунок банкету
             </button>
-            <a
-              href="#menu"
+            <button
+              onClick={() => onOpenBooking('table')}
               className="px-10 py-5 border border-white text-white uppercase tracking-[0.2em] text-xs font-bold hover:bg-white hover:text-stone-900 transition-all transform hover:-translate-y-1"
             >
-              Переглянути меню
-            </a>
+              Забронювати стіл
+            </button>
           </div>
         </motion.div>
       </div>

@@ -8,16 +8,30 @@ import MenuSection from '@/components/MenuSection';
 import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 import BookingDrawer from '@/components/BookingDrawer';
+import MenuModal from '@/components/MenuModal';
 import { motion } from 'motion/react';
 
 export default function Home() {
+  const [bookingMode, setBookingMode] = useState<'calculation' | 'table'>('calculation');
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const openBooking = (mode: 'calculation' | 'table') => {
+    setBookingMode(mode);
+    setIsBookingOpen(true);
+  };
 
   return (
     <main className="relative">
-      <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
+      <Navbar 
+        onOpenBooking={openBooking} 
+        onOpenMenu={() => setIsMenuOpen(true)} 
+      />
       
-      <Hero onOpenBooking={() => setIsBookingOpen(true)} />
+      <Hero 
+        onOpenBooking={openBooking} 
+        onOpenMenu={() => setIsMenuOpen(true)}
+      />
       
       {/* Service & Organization Section */}
       <section id="service" className="py-24 bg-white">
@@ -34,24 +48,36 @@ export default function Home() {
                   Сервіс та Організація
                 </span>
                 <h2 className="text-5xl md:text-6xl font-serif italic text-stone-900 mb-8">
-                  Спокій та впевненість <br /> у кожній деталі
+                  Ваше свято — <br /> у надійних руках
                 </h2>
                 <p className="text-stone-600 font-serif italic text-lg leading-relaxed mb-8">
-                  Організація заходів у PLATE — це системний і відпрацьований процес, який знімає з вас зайвий стрес. З вами працює персональний менеджер, який допомагає скласти меню, продумати формат та координує всі процеси.
+                  Ми в PLATE зробили все, щоб організація банкету не нагадувала складний квест. Для нас це чіткий процес, а для вас — можливість просто розслабитися і передчувати крутий вечір.
                 </p>
-                <p className="text-stone-500 text-sm leading-relaxed mb-10">
-                  Особлива увага приділяється деталям: від сервірування та подачі страв до роботи персоналу в залі. Команда ресторану супроводжує гостей на всіх етапах, забезпечуючи бездоганний результат та атмосферу, в якій комфортно кожному.
-                </p>
-                <div className="flex gap-12">
-                  <div>
-                    <span className="text-4xl font-serif text-stone-900 block mb-2">100%</span>
-                    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Координація</span>
+                
+                <div className="space-y-6 mb-10">
+                  <div className="flex gap-4">
+                    <div className="w-1 h-1 rounded-full bg-stone-300 mt-2 shrink-0" />
+                    <p className="text-stone-500 text-sm leading-relaxed">
+                      <strong className="text-stone-900 font-bold">Координація 360°:</strong> Ми поруч від першого «привіт» до останнього гостя. Контролюємо все, що відбувається в залі, щоб ви не відволікалися від спілкування.
+                    </p>
                   </div>
-                  <div>
-                    <span className="text-4xl font-serif text-stone-900 block mb-2">0</span>
-                    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Зайвого стресу</span>
+                  <div className="flex gap-4">
+                    <div className="w-1 h-1 rounded-full bg-stone-300 mt-2 shrink-0" />
+                    <p className="text-stone-500 text-sm leading-relaxed">
+                      <strong className="text-stone-900 font-bold">Меню саме для вас:</strong> Жодних шаблонів. Хочете легкий фуршет чи розкішну вечерю з декількома винесеннями страв? Ми підберемо ідеальний набір під ваш бюджет і смак.
+                    </p>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-1 h-1 rounded-full bg-stone-300 mt-2 shrink-0" />
+                    <p className="text-stone-500 text-sm leading-relaxed">
+                      <strong className="text-stone-900 font-bold">Жодних технічних головоломок:</strong> Допоможемо правильно розставити столи, виділити місце для танців чи презентації та організуємо все так, щоб гостям було максимально зручно.
+                    </p>
                   </div>
                 </div>
+
+                <p className="text-stone-900 font-serif italic text-lg">
+                  З нас — ідеальний результат, з вас — гарний настрій. 0% стресу, обіцяємо!
+                </p>
               </motion.div>
             </div>
             <div className="flex-1 relative">
@@ -63,7 +89,7 @@ export default function Home() {
                 className="relative z-10"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop"
+                  src="https://res.cloudinary.com/daq51lz0x/image/upload/v1775860177/photo_2026-04-10_15-00-44_eofk6r.jpg"
                   alt="Event Organization"
                   width={1000}
                   height={600}
@@ -77,7 +103,7 @@ export default function Home() {
         </div>
       </section>
 
-      <MenuSection />
+      <MenuSection onOpenMenu={() => setIsMenuOpen(true)} />
       
       <Gallery />
 
@@ -93,24 +119,41 @@ export default function Home() {
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-6xl font-serif italic mb-12">
+          <h2 className="text-4xl md:text-6xl font-serif italic mb-8">
             Насолоджуйтеся святом, <br /> не відволікаючись на деталі.
           </h2>
+          <p className="text-white uppercase tracking-[0.3em] text-[10px] font-bold mb-8 block">
+            Організовуємо банкети від 10 до 120 гостей
+          </p>
           <p className="text-white/80 font-serif italic text-lg mb-12 max-w-2xl mx-auto">
             Ми подбаємо про все: від складання меню до координації в день події. Зосередьтеся на головному — вашому святі.
           </p>
-          <button
-            onClick={() => setIsBookingOpen(true)}
-            className="px-12 py-6 bg-white text-stone-900 uppercase tracking-[0.2em] text-xs font-bold hover:bg-stone-100 transition-all transform hover:scale-105"
-          >
-            Забронювати дату
-          </button>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <button
+              onClick={() => openBooking('table')}
+              className="px-12 py-6 border border-white text-white uppercase tracking-[0.2em] text-xs font-bold hover:bg-white hover:text-stone-900 transition-all transform hover:scale-105"
+            >
+              Забронювати стіл
+            </button>
+            <button
+              onClick={() => openBooking('calculation')}
+              className="px-12 py-6 bg-white text-stone-900 uppercase tracking-[0.2em] text-xs font-bold hover:bg-stone-100 transition-all transform hover:scale-105"
+            >
+              Розрахунок банкету
+            </button>
+          </div>
         </div>
       </section>
 
       <Footer />
 
-      <BookingDrawer isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      <BookingDrawer 
+        key={`${isBookingOpen}-${bookingMode}`}
+        isOpen={isBookingOpen} 
+        onClose={() => setIsBookingOpen(false)} 
+        mode={bookingMode}
+      />
+      <MenuModal isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </main>
   );
 }
