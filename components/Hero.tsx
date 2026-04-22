@@ -24,6 +24,7 @@ export default function Hero({ onOpenBooking, onOpenMenu }: HeroProps) {
           className="object-cover scale-105 animate-slow-zoom"
           priority
           referrerPolicy="no-referrer"
+          sizes="100vw"
         />
       </div>
 
@@ -37,18 +38,36 @@ export default function Hero({ onOpenBooking, onOpenMenu }: HeroProps) {
           <span className="text-white/80 uppercase tracking-[0.4em] text-xs font-bold mb-6 block">
             Мистецтво святкування
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif italic mb-8 leading-tight">
-            Plate — місце для ваших подій у Києві
+          <h1 className="text-4xl md:text-6xl lg:text-7xl text-white font-serif italic mb-10 leading-tight">
+            Створюємо стильні та атмосферні події, які запам’ятовуються
           </h1>
           
-          <div className="grid md:grid-cols-2 gap-8 text-left mb-12">
-            <div className="space-y-4">
-              <p className="text-white/90 text-sm md:text-base font-serif italic leading-relaxed">
-                Ми створили Plate як світлий та зрозумілий простір, де головне — це ваша подія та люди за столом. У нас немає зайвого пафосу, зате є багато світла, сучасний дизайн і кухня, яку полюбляють.
-              </p>
-              <p className="text-white/90 text-sm md:text-base font-serif italic leading-relaxed">
-                Сьогодні Plate — це вже дві локації у Києві, кожна з яких має свій характер, але зберігає наш спільний підхід до якості. Плануєте ви камерне весілля, день народження чи корпоратив — ми просто робимо так, щоб вам було смачно, затишно і спокійно.
-              </p>
+          <div className="grid md:grid-cols-2 gap-12 text-left mb-16 items-start">
+            <div className="space-y-6">
+              <ul className="grid grid-cols-2 gap-4 text-white/90 text-sm md:text-lg font-serif italic list-none">
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Весілля
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Дні народження
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Корпоративи
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Дитячі свята
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Конференції
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Хрестини
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Гендер-паті
+                </li>
+              </ul>
+              <div className="pt-6 border-t border-white/10" />
             </div>
             <div className="space-y-4 border-l border-white/20 pl-8 hidden md:block">
               <div className="space-y-2">

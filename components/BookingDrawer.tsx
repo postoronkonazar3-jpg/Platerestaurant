@@ -41,11 +41,13 @@ export default function BookingDrawer({ isOpen, onClose, mode }: BookingDrawerPr
         alert(message);
         onClose();
       } else {
-        throw new Error('Failed to send');
+        const errorData = await response.json();
+        throw new Error(errorData.details || errorData.error || 'Failed to send');
       }
     } catch (error) {
       console.error('Error sending booking:', error);
-      alert('Вибачте, сталася помилка. Будь ласка, спробуйте пізніше або зателефонуйте нам.');
+      const errorMessage = error instanceof Error ? error.message : 'Сталася невідома помилка';
+      alert(`Помилка: ${errorMessage}\n\nБудь ласка, перевірте налаштування бота або зателефонуйте нам.`);
     }
   };
 

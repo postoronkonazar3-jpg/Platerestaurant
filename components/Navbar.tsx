@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { Menu as MenuIcon, X, Phone } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Menu as MenuIcon, X, Phone, Instagram } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface NavbarProps {
   onOpenBooking: (mode: 'calculation' | 'table') => void;
@@ -12,6 +14,7 @@ interface NavbarProps {
 export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +25,11 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: 'Головна', href: '#' },
+    { name: 'Головна', href: '/' },
     { name: 'Меню', isMenuTrigger: true },
-    { name: 'Сервіс', href: '#service' },
-    { name: 'Контакти', href: '#contacts' },
+    { name: 'Банкетні зали', href: '/halls' },
+    { name: 'Сервіс', href: '/#service' },
+    { name: 'Контакти', href: '/#contacts' },
   ];
 
   const handleMobileNavClick = (href: string, isMenuTrigger?: boolean) => {
@@ -36,17 +40,20 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
       return;
     }
 
-    if (href === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const targetId = href.replace('#', '');
+    if (href.startsWith('/#')) {
+      const targetId = href.replace('/#', '');
       const element = document.getElementById(targetId);
       if (element) {
-        // Small delay to allow the menu closing animation to start
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 50);
+      } else {
+        router.push(href);
       }
+    } else if (href === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      router.push(href);
     }
   };
 
@@ -58,12 +65,12 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <a href="#" className="flex flex-col items-center group">
+        <Link href="/" className="flex flex-col items-center group">
           <span className={`text-3xl font-serif tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolled ? 'text-stone-900' : 'text-white'}`}>
             Plate
           </span>
           <div className={`h-px w-0 group-hover:w-full transition-all duration-500 ${isScrolled ? 'bg-stone-900' : 'bg-white'}`} />
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-6">
@@ -79,18 +86,26 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
                 {link.name}
               </button>
             ) : (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                href={link.href!}
                 className={`text-xs uppercase tracking-[0.2em] font-bold transition-colors duration-500 hover:opacity-60 ${
                   isScrolled ? 'text-stone-900' : 'text-white'
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             )
           ))}
           <div className="flex items-center gap-4">
+            <a 
+              href="https://www.instagram.com/plate_kyiv_?igsh=MWh5dThvdmNpOGd3Mg%3D%3D&utm_source=qr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`p-2 transition-colors duration-500 hover:opacity-60 ${isScrolled ? 'text-stone-900' : 'text-white'}`}
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
             <button
               onClick={() => onOpenBooking('table')}
               className={`px-5 py-3 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 border ${
@@ -128,43 +143,48 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
       </div>
 
       {/* Mobile Menu */}
-      <motion.div
-        initial={false}
-        animate={isMobileMenuOpen ? { height: 'auto', opacity: 1, display: 'block' } : { height: 0, opacity: 0, transitionEnd: { display: 'none' } }}
-        className="md:hidden bg-white overflow-hidden border-b border-stone-100 shadow-2xl pointer-events-auto"
-      >
-        <div className="px-6 py-12 flex flex-col space-y-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => handleMobileNavClick(link.href || '', link.isMenuTrigger)}
-              className="text-stone-900 text-base uppercase tracking-[0.2em] font-bold text-left py-2 border-b border-stone-50"
-            >
-              {link.name}
-            </button>
-          ))}
-          <div className="flex flex-col gap-4 pt-4">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onOpenBooking('table');
-              }}
-              className="w-full py-5 border border-stone-900 text-stone-900 text-xs uppercase tracking-[0.2em] font-bold"
-            >
-              Забронювати стіл
-            </button>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onOpenBooking('calculation');
-              }}
-              className="w-full py-5 bg-stone-900 text-white text-xs uppercase tracking-[0.2em] font-bold"
-            >
-              Розрахунок банкету
-            </button>
-          </div>
-        </div>
-      </motion.div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-white overflow-hidden border-b border-stone-100 shadow-2xl relative z-50"
+          >
+            <div className="px-6 py-12 flex flex-col space-y-8">
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => handleMobileNavClick(link.href || '', link.isMenuTrigger)}
+                  className="text-stone-900 text-base uppercase tracking-[0.2em] font-bold text-left py-2 border-b border-stone-50"
+                >
+                  {link.name}
+                </button>
+              ))}
+              <div className="flex flex-col gap-4 pt-4">
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenBooking('table');
+                  }}
+                  className="w-full py-5 border border-stone-900 text-stone-900 text-xs uppercase tracking-[0.2em] font-bold"
+                >
+                  Забронювати стіл
+                </button>
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenBooking('calculation');
+                  }}
+                  className="w-full py-5 bg-stone-900 text-white text-xs uppercase tracking-[0.2em] font-bold"
+                >
+                  Розрахунок банкету
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

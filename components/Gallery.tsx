@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useMotionValue, animate } from 'motion/react';
+import { ZoomIn } from 'lucide-react';
+import ImageModal from './ImageModal';
 
 const galleryImages = [
   { src: "https://res.cloudinary.com/daq51lz0x/image/upload/v1775869606/photo_5_2026-04-11_04-05-18_jydehg.jpg", alt: "Plate Event 1" },
@@ -29,6 +31,9 @@ const galleryImages = [
 export default function Gallery() {
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<{src: string, alt: string} | null>(null);
+  const isDraggingRef = useRef(false);
+  const dragStartPosRef = useRef({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const x = useMotionValue(0);
@@ -60,16 +65,33 @@ export default function Gallery() {
     return controls.stop;
   }, [dragConstraints.left, x, isAutoPlaying]);
 
-  const handleDragStart = () => {
+  const handleDragStart = (event: any, info: any) => {
     setIsAutoPlaying(false);
+    isDraggingRef.current = false;
+    dragStartPosRef.current = { x: info.point.x, y: info.point.y };
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
-  const handleDragEnd = () => {
+  const handleDragEnd = (event: any, info: any) => {
+    const dragDistance = Math.sqrt(
+      Math.pow(info.point.x - dragStartPosRef.current.x, 2) +
+      Math.pow(info.point.y - dragStartPosRef.current.y, 2)
+    );
+    
+    if (dragDistance > 5) {
+      isDraggingRef.current = true;
+    }
+
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setIsAutoPlaying(true);
     }, 5000);
+  };
+
+  const handleImageClick = (image: {src: string, alt: string}) => {
+    if (!isDraggingRef.current) {
+      setSelectedImage(image);
+    }
   };
 
   return (
@@ -101,7 +123,8 @@ export default function Gallery() {
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className="group relative h-[400px] w-[300px] md:h-[500px] md:w-[400px] overflow-hidden rounded-2xl flex-shrink-0"
+              onClick={() => handleImageClick(image)}
+              className="group relative h-[400px] w-[300px] md:h-[500px] md:w-[400px] overflow-hidden rounded-2xl flex-shrink-0 cursor-zoom-in"
             >
               <Image
                 src={image.src}
@@ -110,14 +133,26 @@ export default function Gallery() {
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
                 draggable={false}
-                priority={index < 8} // Preload first 8 images
-                loading={index >= 8 ? "eager" : undefined} // Force eager loading for the rest
+                priority={index < 4} // Preload first 4 images instead of 8
+                loading={index >= 4 ? "lazy" : undefined}
+                sizes="(max-width: 768px) 300px, 400px"
               />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-500" />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/40 flex items-center justify-center transform scale-50 group-hover:scale-100 transition-transform duration-300">
+                  <ZoomIn className="w-6 h-6 text-white" />
+                </div>
+              </div>
             </div>
           ))}
         </motion.div>
       </div>
+
+      <ImageModal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        imageSrc={selectedImage?.src || ''}
+        imageAlt={selectedImage?.alt || ''}
+      />
     </section>
   );
 }
