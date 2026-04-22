@@ -328,16 +328,16 @@ export default function HallsPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="flex justify-center items-center">
                   <div 
-                    onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1776890822/image8_yjfhmf.png', alt: 'Velvet Hall', rotate: '-rotate-90' })}
+                    onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/q_auto,f_auto/v1776890822/image8_yjfhmf.png', alt: 'Velvet Hall', rotate: '-rotate-90' })}
                     className="cursor-zoom-in group relative aspect-[2/3] w-full max-w-[400px] overflow-hidden"
                   >
                     <Image
-                      src="https://res.cloudinary.com/daq51lz0x/image/upload/v1776890822/image8_yjfhmf.png"
+                      src="https://res.cloudinary.com/daq51lz0x/image/upload/q_auto,f_auto/v1776890822/image8_yjfhmf.png"
                       alt="Velvet Hall"
                       fill
                       className="object-cover -rotate-90 scale-[1.6] transition-transform duration-500 group-hover:scale-[1.7]"
                       referrerPolicy="no-referrer"
-                      sizes="(max-width: 1024px) 100vw, 400px"
+                      sizes="(max-width: 1024px) 100vw, 640px"
                     />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <ZoomIn className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
