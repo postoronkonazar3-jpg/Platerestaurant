@@ -34,76 +34,7 @@ export default function Home() {
         onOpenMenu={() => setIsMenuOpen(true)}
       />
       
-      {/* Service & Organization Section */}
-      <section id="service" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center gap-20">
-            <div className="flex-1">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <span className="text-stone-400 uppercase tracking-[0.4em] text-[10px] font-bold mb-4 block">
-                  Сервіс та Організація
-                </span>
-                <h2 className="text-5xl md:text-6xl font-serif italic text-stone-900 mb-8">
-                  Ваше свято — <br /> у надійних руках
-                </h2>
-                <p className="text-stone-600 font-serif italic text-lg leading-relaxed mb-8">
-                  Ми в PLATE зробили все, щоб організація банкету не нагадувала складний квест. Для нас це чіткий процес, а для вас — можливість просто розслабитися і передчувати крутий вечір.
-                </p>
-                
-                <div className="space-y-6 mb-10">
-                  <div className="flex gap-4">
-                    <div className="w-1 h-1 rounded-full bg-stone-300 mt-2 shrink-0" />
-                    <p className="text-stone-500 text-sm leading-relaxed">
-                      <strong className="text-stone-900 font-bold">Координація 360°:</strong> Ми поруч від першого «привіт» до останнього гостя. Контролюємо все, що відбувається в залі, щоб ви не відволікалися від спілкування.
-                    </p>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-1 h-1 rounded-full bg-stone-300 mt-2 shrink-0" />
-                    <p className="text-stone-500 text-sm leading-relaxed">
-                      <strong className="text-stone-900 font-bold">Меню саме для вас:</strong> Жодних шаблонів. Хочете легкий фуршет чи розкішну вечерю з декількома винесеннями страв? Ми підберемо ідеальний набір під ваш бюджет і смак.
-                    </p>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-1 h-1 rounded-full bg-stone-300 mt-2 shrink-0" />
-                    <p className="text-stone-500 text-sm leading-relaxed">
-                      <strong className="text-stone-900 font-bold">Жодних технічних головоломок:</strong> Допоможемо правильно розставити столи, виділити місце для танців чи презентації та організуємо все так, щоб гостям було максимально зручно.
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-stone-900 font-serif italic text-lg">
-                  З нас — ідеальний результат, з вас — гарний настрій. 0% стресу, обіцяємо!
-                </p>
-              </motion.div>
-            </div>
-            <div className="flex-1 relative">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="relative z-10"
-              >
-                <Image
-                  src="https://res.cloudinary.com/daq51lz0x/image/upload/v1775860177/photo_2026-04-10_15-00-44_eofk6r.jpg"
-                  alt="Event Organization"
-                  width={1000}
-                  height={600}
-                  className="rounded-3xl shadow-2xl"
-                  referrerPolicy="no-referrer"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                />
-              </motion.div>
-              <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#f5f2ed] -z-0 rounded-full blur-3xl opacity-50" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Gallery />
 
       <MenuSection onOpenMenu={() => setIsMenuOpen(true)} />
 
@@ -234,7 +165,6 @@ export default function Home() {
         </div>
       </section>
       
-      <Gallery />
 
       {/* Testimonials or CTA */}
       <section className="py-32 bg-stone-900 text-white relative overflow-hidden">

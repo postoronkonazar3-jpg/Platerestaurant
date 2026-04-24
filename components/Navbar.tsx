@@ -73,7 +73,7 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center space-x-6">
           {navLinks.map((link) => (
             link.isMenuTrigger ? (
               <button
@@ -131,7 +131,7 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 relative z-[110]"
+          className="lg:hidden p-2 relative z-[110]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
@@ -149,9 +149,20 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-white overflow-hidden border-b border-stone-100 shadow-2xl relative z-50"
+            className="lg:hidden bg-white overflow-hidden border-b border-stone-100 shadow-2xl relative z-50"
           >
             <div className="px-6 py-12 flex flex-col space-y-8">
+              <div className="flex justify-between items-center border-b border-stone-50 pb-4">
+                <span className="text-xs uppercase tracking-widest font-bold text-stone-400">Меню</span>
+                <a 
+                  href="https://www.instagram.com/plate_kyiv_?igsh=MWh5dThvdmNpOGd3Mg%3D%3D&utm_source=qr" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 text-stone-900 hover:opacity-60 transition-opacity"
+                >
+                  <Instagram className="w-6 h-6" />
+                </a>
+              </div>
               {navLinks.map((link) => (
                 <button
                   key={link.name}
