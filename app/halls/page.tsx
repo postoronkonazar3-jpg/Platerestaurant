@@ -101,6 +101,60 @@ export default function HallsPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
+          {/* Hall Section: Локація для церемоній */}
+          <section className="py-24 border-b border-stone-100">
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="text-stone-400 uppercase tracking-[0.4em] text-[10px] font-bold mb-4 block">
+                    Скляренка, 9
+                  </span>
+                  <h2 className="text-4xl md:text-5xl font-serif italic text-stone-900 mb-8">
+                    Зона для церемоній
+                  </h2>
+                  
+                  <div className="space-y-6 text-stone-600 font-serif italic text-lg leading-relaxed mb-10">
+                    <p>
+                      Світла, потопаюча в зелені локація для весільних церемоній із елегантним білим павільйоном та повітряним текстильним декором.
+                    </p>
+                    <p>
+                      Простір поєднує природну свіжість та витончену естетику, створюючи ідеальне тло для романтичної та камерної атмосфери вашого особливого дня.
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => openBooking('calculation')}
+                    className="group inline-flex items-center gap-4 bg-stone-900 text-white px-10 py-5 uppercase tracking-[0.2em] text-[10px] font-bold transition-all hover:bg-stone-800"
+                  >
+                    Забронювати дату <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </motion.div>
+
+                <div 
+                  onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1777737801/IMG_6715_wzhxlj.jpg', alt: 'Зона для церемоній' })}
+                  className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl cursor-zoom-in group"
+                >
+                  <Image
+                    src="https://res.cloudinary.com/daq51lz0x/image/upload/v1777737801/IMG_6715_wzhxlj.jpg"
+                    alt="Зона для церемоній"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Hall Section: Літня тераса */}
           <section className="py-24 border-b border-stone-100">
             <div className="max-w-7xl mx-auto px-6">
@@ -157,12 +211,12 @@ export default function HallsPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div 
-                    onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1776890820/image4_rucuz2.jpg', alt: 'Summer Terrace 1' })}
+                    onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1776890820/image4_rucuz2.jpg', alt: 'Summer Terrace' })}
                     className="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-xl cursor-zoom-in group"
                   >
                     <Image
                       src="https://res.cloudinary.com/daq51lz0x/image/upload/v1776890820/image4_rucuz2.jpg"
-                      alt="Summer Terrace 1"
+                      alt="Summer Terrace"
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
@@ -198,11 +252,11 @@ export default function HallsPage() {
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div 
-                  onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1776890821/image5_exibyl.jpg', alt: 'Column Hall' })}
+                  onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1777737820/photo_1_2026-05-02_18-59-16_rhv9yq.jpg', alt: 'Column Hall' })}
                   className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl cursor-zoom-in group"
                 >
                   <Image
-                    src="https://res.cloudinary.com/daq51lz0x/image/upload/v1776890821/image5_exibyl.jpg"
+                    src="https://res.cloudinary.com/daq51lz0x/image/upload/v1777737820/photo_1_2026-05-02_18-59-16_rhv9yq.jpg"
                     alt="Column Hall"
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -328,16 +382,16 @@ export default function HallsPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="flex justify-center items-center">
                   <div 
-                    onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/q_auto,f_auto/v1776890822/image8_yjfhmf.png', alt: 'Velvet Hall', rotate: '-rotate-90' })}
-                    className="cursor-zoom-in group relative aspect-[2/3] w-full max-w-[400px] overflow-hidden"
+                    onClick={() => setSelectedImage({ src: 'https://res.cloudinary.com/daq51lz0x/image/upload/v1777737820/photo_2_2026-05-02_18-59-16_pm3gtn.jpg', alt: 'Velvet Hall' })}
+                    className="cursor-zoom-in group relative aspect-[3/2] w-full max-w-[600px] overflow-hidden rounded-2xl shadow-2xl"
                   >
                     <Image
-                      src="https://res.cloudinary.com/daq51lz0x/image/upload/q_auto,f_auto/v1776890822/image8_yjfhmf.png"
+                      src="https://res.cloudinary.com/daq51lz0x/image/upload/v1777737820/photo_2_2026-05-02_18-59-16_pm3gtn.jpg"
                       alt="Velvet Hall"
                       fill
-                      className="object-cover -rotate-90 scale-[1.6] transition-transform duration-500 group-hover:scale-[1.7]"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
-                      sizes="(max-width: 1024px) 100vw, 640px"
+                      sizes="(max-width: 1024px) 100vw, 800px"
                     />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <ZoomIn className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />

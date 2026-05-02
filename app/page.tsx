@@ -52,34 +52,36 @@ export default function Home() {
               <span className="text-white/40 uppercase tracking-[0.4em] text-[10px] font-bold mb-4 block">
                 Спеціальна пропозиція
               </span>
-              <h2 className="text-5xl md:text-6xl font-serif italic mb-8 leading-tight">
+              <h2 className="text-5xl md:text-6xl font-serif italic mb-4 leading-tight">
                 Весілля в форматі <br /> <span className="text-white/60">ALL INCLUSIVE</span>
               </h2>
+              <p className="text-xl font-serif italic text-white/80 mb-10">Організатор у подарунок</p>
               
               <div className="flex flex-wrap gap-4 mb-10">
                 <div className="px-6 py-3 border border-white/20 rounded-full">
                   <p className="text-xs uppercase tracking-widest text-white/60 font-bold mb-1">Базовий</p>
-                  <p className="text-xl font-serif">3900 <span className="text-sm">/ гостя</span></p>
+                  <p className="text-xl font-serif">4000 <span className="text-sm">грн / гостя</span></p>
                 </div>
-                <div className="px-6 py-3 border border-white/20 bg-white/5 rounded-full">
+                <div className="px-6 py-3 border border-white/20 rounded-full">
                   <p className="text-xs uppercase tracking-widest text-white/60 font-bold mb-1">Стандарт</p>
-                  <p className="text-xl font-serif">4700 <span className="text-sm">/ гостя</span></p>
+                  <p className="text-xl font-serif">5000 <span className="text-sm">грн / гостя</span></p>
                 </div>
                 <div className="px-6 py-3 border border-white/40 bg-white/10 rounded-full">
                   <p className="text-xs uppercase tracking-widest text-white font-bold mb-1">Преміум</p>
-                  <p className="text-xl font-serif text-white">7900 <span className="text-sm">/ гостя</span></p>
+                  <p className="text-xl font-serif">6500 <span className="text-sm">грн / гостя</span></p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 {[
-                  "Локація для церемонії в подарунок",
-                  "Фіксована ціна на гостя",
-                  "Welcome party",
-                  "Pre-party bar",
-                  "Меню безліміт",
-                  "Бар без обмежень",
-                  "Аніматори для дітей в подарунок"
+                  "Банкетне меню",
+                  "Номер у готелі",
+                  "Вітальний фуршет",
+                  "Святковий торт",
+                  "Весільний декор",
+                  "Професійний фотограф",
+                  "Ведучий та діджей",
+                  "Професійне звукове та світлове обладнання"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />

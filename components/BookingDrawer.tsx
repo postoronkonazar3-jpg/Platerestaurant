@@ -63,7 +63,7 @@ export default function BookingDrawer({ isOpen, onClose, mode }: BookingDrawerPr
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[200]"
           />
 
           {/* Drawer */}
@@ -72,7 +72,7 @@ export default function BookingDrawer({ isOpen, onClose, mode }: BookingDrawerPr
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-[#fdfcf8] shadow-2xl z-50 overflow-y-auto"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-[#fdfcf8] shadow-2xl z-[201] overflow-y-auto"
           >
             <div className="p-8">
               <div className="flex justify-between items-center mb-12">
@@ -236,7 +236,7 @@ export default function BookingDrawer({ isOpen, onClose, mode }: BookingDrawerPr
               <div className="mt-12 text-center">
                 <p className="text-stone-400 text-sm italic font-serif">
                   Або зателефонуйте нам: <br />
-                  <span className="text-stone-800 not-italic font-sans font-bold tracking-wider">+38 (044) 123-45-67</span>
+                  <span className="text-stone-800 not-italic font-sans font-bold tracking-wider">+38 067 934 88 80</span>
                 </p>
               </div>
             </div>

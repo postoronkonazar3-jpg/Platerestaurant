@@ -51,7 +51,11 @@ export default function Navbar({ onOpenBooking, onOpenMenu }: NavbarProps) {
         router.push(href);
       }
     } else if (href === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.pathname === '/') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        router.push('/');
+      }
     } else {
       router.push(href);
     }

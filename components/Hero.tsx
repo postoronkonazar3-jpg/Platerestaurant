@@ -42,49 +42,25 @@ export default function Hero({ onOpenBooking, onOpenMenu }: HeroProps) {
             Створюємо стильні та атмосферні події, які запам’ятовуються
           </h1>
           
-          <div className="grid md:grid-cols-2 gap-12 text-left mb-16 items-start">
-            <div className="space-y-6">
-              <ul className="grid grid-cols-2 gap-4 text-white/90 text-sm md:text-lg font-serif italic list-none">
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Весілля
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Дні народження
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Корпоративи
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Дитячі свята
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Конференції
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Хрестини
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" /> Гендер-паті
-                </li>
-              </ul>
-              <div className="pt-6 border-t border-white/10" />
-            </div>
-            <div className="space-y-4 border-l border-white/20 pl-8 hidden md:block">
-              <div className="space-y-2">
-                <p className="text-white text-xs uppercase tracking-widest font-bold">Два заклади</p>
-                <p className="text-white/70 text-xs italic">Обирайте локацію, яка зручніша для ваших гостей.</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-white text-xs uppercase tracking-widest font-bold">Простір</p>
-                <p className="text-white/70 text-xs italic">Сучасні зали, що легко підлаштовуються под ваш декор.</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-white text-xs uppercase tracking-widest font-bold">Кухня</p>
-                <p className="text-white/70 text-xs italic">Зрозуміла європейська класика та авторські акценти.</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-white text-xs uppercase tracking-widest font-bold">Сервіс</p>
-                <p className="text-white/70 text-xs italic">Коли команда поруч саме тоді, коли це потрібно.</p>
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <div className="space-y-8 max-w-2xl mx-auto">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <p className="text-white text-xs uppercase tracking-widest font-bold">Два заклади</p>
+                  <p className="text-white/70 text-sm italic">Обирайте локацію, яка зручніша для ваших гостей.</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-white text-xs uppercase tracking-widest font-bold">Простір</p>
+                  <p className="text-white/70 text-sm italic">Сучасні зали, що легко підлаштовуються под ваш декор.</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-white text-xs uppercase tracking-widest font-bold">Кухня</p>
+                  <p className="text-white/70 text-sm italic">Зрозуміла європейська класика та авторські акценти.</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-white text-xs uppercase tracking-widest font-bold">Сервіс</p>
+                  <p className="text-white/70 text-sm italic">Коли команда поруч саме тоді, коли це потрібно.</p>
+                </div>
               </div>
             </div>
           </div>
