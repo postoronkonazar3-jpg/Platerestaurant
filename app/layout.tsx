@@ -14,8 +14,15 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Plate - Ресторан Банкетів',
-  description: 'Вишуканий ресторан Plate у Києві. Найкраще місце для ваших банкетів, весіль та корпоративів.',
+  title: 'Plate - Ресторан Банкетів | Весілля та Корпоративи у Києві',
+  description: 'Вишуканий ресторан Plate у Києві. Найкраще місце для ваших банкетів, весіль та корпоративів. Просторі зали, європейська кухня та професійний сервіс.',
+  keywords: ['ресторан київ', 'банкетний зал', 'весілля київ', 'оренда залу для весілля', 'корпоратив київ', 'Plate ресторан'],
+  openGraph: {
+    title: 'Plate - Ресторан Банкетів',
+    description: 'Найкраще місце для ваших особливих подій у Києві.',
+    type: 'website',
+    locale: 'uk_UA',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
